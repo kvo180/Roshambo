@@ -41,6 +41,7 @@ class ResultsViewController: UIViewController {
     // MARK: - UI
     func evaluateResults() {
         var text: String
+        var resultsAction: String
         var imageName: String
         var youWon: Bool = false // initialize to false
         let tieString = "\(userPlay) vs. \(cpuPlay)"
@@ -56,19 +57,33 @@ class ResultsViewController: UIViewController {
         switch userPlay {
         case "Rock":
             youWon = cpuPlay == "Scissors"
+            resultsAction = "crushes"
         case "Paper":
             youWon = cpuPlay == "Rock"
+            resultsAction = "covers"
         default:
             youWon = cpuPlay == "Paper"
+            resultsAction = "cut"
         }
         
-        // Set text and imageName
+        // Set text and imageName when user wins
         if youWon == true {
-            text = "Your \(userPlay) beats my \(cpuPlay): YOU WIN!"
+            text = "Your \(userPlay) \(resultsAction) my \(cpuPlay): YOU WIN!"
             imageName = "\(userPlay)-\(cpuPlay)"
         }
+        
+        // Set text and imageName when user doesn't win
         else {
-            text = "My \(cpuPlay) beats your \(userPlay): YOU LOSE!"
+            switch cpuPlay {
+            case "Rock":
+                resultsAction = "crushes"
+            case "Paper":
+                resultsAction = "covers"
+            default:
+                resultsAction = "cut"
+            }
+            
+            text = "My \(cpuPlay) \(resultsAction) your \(userPlay): YOU LOSE!"
             imageName = "\(cpuPlay)-\(userPlay)"
         }
         
