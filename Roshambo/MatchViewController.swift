@@ -17,25 +17,29 @@ class MatchViewController: UIViewController {
 
     // MARK: - Programmatic approach for rock
     @IBAction func rockPressed(sender: UIButton) {
-        println("rock pressed")
+        print("rock pressed")
         
-        let controller = self.storyboard?.instantiateViewControllerWithIdentifier("ResultsViewController") as! ResultsViewController // get assembled ResultsViewController from storyboard (which returns an AnyObject!) and cast as ResultsViewController
+        // Instantiate ResultsViewController
+        let controller = storyboard?.instantiateViewControllerWithIdentifier("ResultsViewController") as! ResultsViewController // get assembled ResultsViewController from storyboard (which returns an AnyObject!) and cast as ResultsViewController
         
+        // Communicate match
         controller.userPlay = getUserPlay(sender)
         
-        presentViewController(controller, animated: true, completion: nil)
+        if let navigationController = self.navigationController {
+            navigationController.pushViewController(controller, animated: true)
+        }
     }
     
     // MARK: - Code with segue approach
     @IBAction func paperPressed(sender: UIButton) {
-        println("paper pressed")
+        print("paper pressed")
         
         performSegueWithIdentifier("play", sender: sender)
     }
     
     // MARK: - Segue only approach
     @IBAction func scissorsPressed(sender: UIButton) {
-        println("scissors pressed")
+        print("scissors pressed")
     }
     
     // MARK: - prepareForSegue

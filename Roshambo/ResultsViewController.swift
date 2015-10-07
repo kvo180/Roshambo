@@ -32,8 +32,8 @@ class ResultsViewController: UIViewController {
         let choices = ["Rock", "Paper", "Scissors"]
         cpuPlay = choices[randomPlay()]
         
-        println("userPlay is \(userPlay)")
-        println("cpuPlay is \(cpuPlay)")
+        print("userPlay is \(userPlay)")
+        print("cpuPlay is \(cpuPlay)")
         
         evaluateResults()
     }
@@ -95,8 +95,9 @@ class ResultsViewController: UIViewController {
     // Dismiss this view controller
     @IBAction func playAgain(sender: UIButton) {
         
-        self.dismissViewControllerAnimated(true, completion: nil)
-        
+        if let navigationController = self.navigationController {
+            navigationController.popToRootViewControllerAnimated(true)
+        }
     }
 
 }
